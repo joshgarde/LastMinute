@@ -2,18 +2,13 @@ from flask import Flask, request
 from keras.models import Sequential, load_model
 import numpy as np
 import pandas as pd
-import mysql.connector
 from dotenv import load_dotenv
+import os
+
 load_dotenv()
 
 app = Flask(__name__)
 model = load_model("Dense_Sequential_Model_1.hdf5")
-cnx = mysql.connector.connect(
-    host=os.environ.get('DB_IP'),
-    port=os.environ.get('DB_PORT'),
-    user=os.environ.get('DB_USER'),
-    password=os.environ.get('DB_PASSWORD')
-)
 
 def minMaxTemp(val):
     return (val - 33.5) / 6.1
@@ -53,7 +48,6 @@ def nn_submit():
         body['sore_throat']
     ]
 
-    print(len(data))
     junk0 = [0 for i in range(25)]
     junk1 = [1 for i in range(25)]
 
