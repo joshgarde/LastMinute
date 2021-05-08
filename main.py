@@ -16,7 +16,7 @@ def minMaxTemp(val):
 def minMaxPulse(val):
     return (val - 35) / 125
 
-@app.route('/nn-submit')
+@app.route('/nn-submit', methods=['POST'])
 def nn_submit():
     body = request.get_json()
 
@@ -67,6 +67,7 @@ def nn_submit():
 
     dummy_cols = list(set(df[binary_features]))
     df = pd.get_dummies(df, columns=dummy_cols)
+    df = df.drop(index=[1,2])
     predictions = model.predict(df)
 
     return {'prediction': predictions[0][0].item()}

@@ -5,7 +5,7 @@ services replacement.
 
 ## Requests
 
-### /nn-submit
+### POST /nn-submit
 
 Request Body (JSON):
 ```
