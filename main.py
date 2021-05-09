@@ -1,4 +1,5 @@
 from flask import Flask, request
+from flask_cors import CORS, cross_origin
 from keras.models import Sequential, load_model
 import numpy as np
 import pandas as pd
@@ -8,6 +9,7 @@ import os
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app)
 model = load_model("Dense_Sequential_Model_1.hdf5")
 
 def minMaxTemp(val):
@@ -17,6 +19,7 @@ def minMaxPulse(val):
     return (val - 35) / 125
 
 @app.route('/nn-submit', methods=['POST'])
+@cross_origin()
 def nn_submit():
     body = request.get_json()
 
