@@ -6,6 +6,7 @@ chardet==4.0.0
 click==7.1.2
 configparser==5.0.2
 Flask==1.1.2
+Flask-Cors==3.0.10
 flatbuffers==1.12
 gast==0.3.3
 google-auth==1.30.0
